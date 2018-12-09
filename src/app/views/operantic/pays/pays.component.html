@@ -1,0 +1,117 @@
+
+<div fxLayout="row wrap">
+
+  <!-- Form de recherche global -->
+  <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="50" fxFlex.sm="50" [@animate]="{value:'*',params:{scale:'.9',delay:'300ms'}}">
+
+    <mat-card class="p-0">
+      <mat-card-content>
+        <form [formGroup]="paysForm" (ngSubmit)="submit()">
+            <div fxLayout="row wrap" fxLayout.lt-sm="column">
+
+              <div fxFlex="100"  class="pt-1 pr-1">
+
+                <mat-form-field class="full-width">
+                  <input
+                    matInput
+                    placeholder="Rechercher dans tout le tableau"
+                    value=""
+                    (keyup)='updateFilter($event)'>
+                </mat-form-field>
+              </div>
+
+
+            </div>
+        </form>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Actions -->
+  <div fxFlex="100" fxFlex.gt-sm="50" fxLayout="column" fxFlex.sm="50" [@animate]="{value:'*',params:{scale:'.9',delay:'300ms'}}">
+        <!-- Selection par continent -->
+       <mat-card class="p-0">
+        <mat-card-content>
+          <form [formGroup]="paysForm" (ngSubmit)="submit()">
+              <div fxLayout="row wrap" fxLayout.lt-sm="column">
+
+                <div fxFlex="100"  class="pt-1 pr-1">
+                    <mat-form-field class="full-width">
+                      <mat-select id="pays" placeholder="Recherche par continent" (selectionChange)="submit()" name="pays" [formControl]="paysForm.controls['pays']" class="mb-1">
+                          <mat-option *ngFor="let continent of continents" [value]="continent.value" ngDefaultControl>
+                            {{continent.viewValue}}
+                          </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                </div>
+
+               </div>
+          </form>
+
+        </mat-card-content>
+      </mat-card>
+
+
+  </div>
+
+</div>
+
+<mat-card class="p-0" [@animate]="{value:'*',params:{y:'50px',delay:'300ms'}}">
+  <mat-card-content class="p-0">
+    <ngx-datatable
+          class="material ml-0 mr-0"
+          [rows]="items"
+          [columnMode]="'force'"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [limit]="10"
+          [rowHeight]="'auto'">
+          <ngx-datatable-column prop='name' title="Nom" name="Nom" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.name }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop='capital' name="Capitale" [resizeable]=true [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.capital }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop='region' name="Region" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row?.region }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop='population' name="Population" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.population }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop='code' name="Devise" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.currencies[0].code }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop='languages.name' name="Langue" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.languages[0].name }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop='area' name="Superficie (km²)" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.area }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop='flag' name="Drapeau" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <img src='{{ row?.flag }}' height='20' alt="Drapeau" class="app-logo">
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Actions" [flexGrow]="1">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <button mat-icon-button mat-sm-button color="primary" class="mr-1" matTooltip="Voir plus" (click)="openPopUp(row)"><mat-icon>pageview</mat-icon></button>
+              </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,118 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+  <form [formGroup]="itemForm">
+   <div fxLayout="row wrap" fxLayout.lt-sm="column">
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="name"
+        [formControl]="itemForm.controls['name']"
+        placeholder="Nom du pays">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="topLevelDomain"
+        [formControl]="itemForm.controls['topLevelDomain']"
+        placeholder="Domaine">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="region"
+        [formControl]="itemForm.controls['region']"
+        placeholder="Region">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="subregion"
+        [formControl]="itemForm.controls['subregion']"
+        placeholder="Sous region">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+        <mat-form-field class="full-width">
+          <input
+          matInput
+          name="demonym"
+          [formControl]="itemForm.controls['demonym']"
+          placeholder="habitant">
+        </mat-form-field>
+      </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="population"
+        [formControl]="itemForm.controls['population']"
+        placeholder="Mombre d'habitant">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+        <mat-form-field class="full-width">
+          <input
+          matInput
+          name="area"
+          [formControl]="itemForm.controls['area']"
+          placeholder="Superficie (km²)">
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+            matInput
+            name="timezones"
+            [formControl]="itemForm.controls['timezones']"
+            placeholder="Time zone">
+          </mat-form-field>
+        </div>
+
+      <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+            matInput
+            name="currencies"
+            [formControl]="itemForm.controls['currencies']"
+            placeholder="Devise">
+          </mat-form-field>
+        </div>
+
+      <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+            matInput
+            name="languages"
+            [formControl]="itemForm.controls['languages']"
+            placeholder="Langue">
+          </mat-form-field>
+      </div>
+
+      <div fxFlex="100" class="mt-1">
+          <span fxFlex></span>
+          <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Fermer</button>
+      </div>
+
+  </div>
+
+  <div fxFlex="100" class="mt-1">
+    <img class="center" src="{{ flagSrc }}"  alt="Drapeau">
+  </div>
+
+
+
+  </form>
